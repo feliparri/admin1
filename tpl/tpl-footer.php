@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <nav class="pull-left">
             <ul>
-                <li>
+                <!--<li>
                     <a href="#">
                         Home
                     </a>
@@ -21,11 +21,11 @@
                     <a href="#">
                        Blog
                     </a>
-                </li>
+                </li>-->
             </ul>
         </nav>
         <p class="copyright pull-right">
-            &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+            &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Candlestick</a>
         </p>
     </div>
 </footer>
