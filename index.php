@@ -1,111 +1,121 @@
 <?php
-	session_start(); 
-	session_destroy(); 
-	$_SESSION['LOGIN']='1';
-?>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+error_reporting(E_ALL);
+session_start();
+session_name('adminDesarrollo');
+date_default_timezone_set('America/Santiago');//or change to whatever timezone you want
 
-	<title>Light Bootstrap Dashboard by Creative Tim</title>
+//INCLUDES////////////////////////////////////////
+//#VALIDACIONES
+require_once('./validar/validarEntrada.php');
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+//#UTILS
+require_once('./class/util/util.class.php');
+require_once('./class/util/email.class.php');
 
+//#MODELO
+require_once('./class/datos/cnn.class.php');
+require_once('./class/datos/AgenteDatos.class.php');
+require_once('./class/datos/MonitorDatos.class.php');
+require_once('./class/datos/UsuarioDatos.class.php');
+require_once('./class/datos/ModuloDatos.class.php');
+require_once('./class/datos/ReclutamientoDatos.class.php');
+require_once('./class/datos/ReclutadoDatos.class.php');
+require_once('./class/datos/ContactoDatos.class.php');
+require_once('./class/datos/PantallaDatos.class.php');
+require_once('./class/datos/parametros.class.php');
 
-    <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+//#CONTROLADORES
+require_once('./class/controller/Inicio.class.php');
 
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+isset($_POST['funcion'])==true?$funcion=$_POST['funcion']:$funcion='';
+ #Enrutamiento 
+ $map = array(
+     //SIDEBAR
+     'formInicio' => array('class'=>'./class/controller/Inicio.class.php' ,'controller' =>'FormularioInicio', 'action' =>'formMostrar'),
+     
+     //MONITOR
+     'Monitor' => array('class'=>'./class/controller/Monitor.class.php' ,'controller' =>'Monitor', 'action' =>$funcion.'Monitor'),
+     
+     //USUARIO
+     'Usuario' => array('class'=>'./class/controller/Usuario.class.php' ,'controller' =>'Usuario', 'action' =>$funcion.'Usuario'),
+     
+     //AGENTE
+     'Agente' => array('class'=>'./class/controller/Agente.class.php' ,'controller' =>'Agente', 'action' =>$funcion.'Agente'),
+     
+     //RECLUTAMIENTO
+     'Reclutamiento' => array('class'=>'./class/controller/Reclutamiento.class.php' ,'controller' =>'Reclutamiento', 'action' =>$funcion.'Reclutamiento'), 
+     
+     //RECLUTADO
+     'Reclutado' => array('class'=>'./class/controller/Reclutado.class.php' ,'controller' =>'Reclutado', 'action' =>$funcion.'Reclutado'), 
+     
+     //CONTACTO
+     'Contacto' => array('class'=>'./class/controller/Contacto.class.php' ,'controller' =>'Contacto', 'action' =>$funcion.'Contacto'), 
+     
+     //HORA EXTRA
+     'HoraExtra' => array('class'=>'./class/controller/HoraExtra.class.php' ,'controller' =>'HoraExtra', 'action' =>$funcion.'HoraExtra'),  
+     
+     //WEBSERVICE ROMANOVA
+     'WsRomanova' => array('class'=>'./class/controller/WsRomanova.class.php' ,'controller' =>'WsRomanova', 'action' =>$funcion.'WsRomanova'), 
+     
+     //PANTALLA
+     'Pantalla' => array('class'=>'./class/controller/Pantalla.class.php' ,'controller' =>'Pantalla', 'action' =>$funcion.'Pantalla'), 
+     
+     //ANTICIPO
+     'Anticipo' => array('class'=>'./class/controller/Anticipo.class.php' ,'controller' =>'Anticipo', 'action' =>$funcion.'Anticipo'), 
+     
+     //ANTICIPO SUPERVISOR
+     'AnticipoSupervisor' => array('class'=>'./class/controller/AnticipoSupervisor.class.php' ,'controller' =>'AnticipoSupervisor', 'action' =>$funcion.'AnticipoSupervisor'), 
+     
+     //VACACIONES SUPERVISOR
+     'VacacionesSupervisor' => array('class'=>'./class/controller/VacacionesSupervisor.class.php' ,'controller' =>'VacacionesSupervisor', 'action' =>$funcion.'VacacionesSupervisor'), 
+     
+     //ANTICIPO
+     'AnticipoJP' => array('class'=>'./class/controller/AnticipoJP.class.php' ,'controller' =>'AnticipoJP', 'action' =>$funcion.'AnticipoJP'), 
+     
+     //VACACIONES
+     'VacacionesJP' => array('class'=>'./class/controller/VacacionesJP.class.php' ,'controller' =>'VacacionesJP', 'action' =>$funcion.'VacacionesJP'), 
+     
+     //MIS DATOS
+     'MisDatos' => array('class'=>'./class/controller/MisDatos.class.php' ,'controller' =>'MisDatos', 'action' =>$funcion.'MisDatos'), 
+     
+     //ANTICIPO AGENTE
+     'AnticipoAgente' => array('class'=>'./class/controller/AnticipoAgente.class.php' ,'controller' =>'AnticipoAgente', 'action' =>$funcion.'AnticipoAgente'), 
+ );
+  
 
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+    #Parseo de la ruta
+    if (!isset($accion) && !isset($_POST['accionJquery'])) {
+       $accion = 'formInicio';
+    }else if(isset($_POST['accionJquery'])){
+        $accion = $_POST['accionJquery'];
+    }
 
+    if (isset($map[$accion])) {
+       $ruta = $accion;
+    } 
+    else {
+       header('Status: 404 Not Found');
+       echo '<html><body><h1>Error 404: No existe la ruta.... <i>' .
+            $accion .'</p></body></html>';
+        exit;
+    }
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
-
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
-</head>
-<body>
-
-<div class="wrapper">
+    $controlador = $map[$ruta];
     
-	<?php 
-		if($_SESSION['LOGIN']=="1"){
-			?>
-			<?php include ('tpl/tpl-sidebar.php'); ?>
+    #var_dump($controlador);
+    #Ejecución del controlador asociado a la ruta
 
-		    <div class="main-panel">
-		        <?php include('tpl/tpl-top.php'); ?>
-
-		        <?php include('tpl/tpl-contenido.php'); ?>
-
-		        <?php include('tpl/tpl-footer.php'); ?>
-		        
-		    </div>
-			<?php
-		}else{
-			echo "SESION NO INICIADA";
-		}
-	?>
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-    	
-</div>
-
-
-</body>
-
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
-
-	<script type="text/javascript">
-    	$(document).ready(function(){
-    		var session="<?php echo $_SESSION['LOGIN']?>";
-        	demo.initChartist();
-        	console.log(session);
-        	var msg = session == 0 ? 'POR FAVOR INGRESE SU USUARIO Y PASSWORD':'SESION INICIADA';
-        	var ico = session == 0 ? 'pe-7s-door-lock':'pe-7s-check';
-        	$.notify({
-            	icon: ico,
-            	message: msg
-
-            },{
-                type: 'info',
-                timer: 2000
-            });
-
-    	});
-	</script>
-
-</html>
+    require_once $controlador['class'];
+    
+    if (method_exists($controlador['controller'],$controlador['action'])) {
+        call_user_func(array(new $controlador['controller'], $controlador['action']));
+    } 
+    else {
+        header('Status: 404 Not Found');
+        echo '<html><body><h1>Error 404: El controlador <i>' .
+        $controlador['controller'] .
+        '->' .
+        $controlador['action'] .
+        '</i> no existe!!!</h1></body></html>';
+    }
+?>
