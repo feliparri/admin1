@@ -1,3 +1,8 @@
+<?php
+	session_start(); 
+	session_destroy(); 
+	$_SESSION['LOGIN']='1';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,25 +39,32 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
+    
+	<?php 
+		if($_SESSION['LOGIN']=="1"){
+			?>
+			<?php include ('tpl/tpl-sidebar.php'); ?>
 
+		    <div class="main-panel">
+		        <?php include('tpl/tpl-top.php'); ?>
+
+		        <?php include('tpl/tpl-contenido.php'); ?>
+
+		        <?php include('tpl/tpl-footer.php'); ?>
+		        
+		    </div>
+			<?php
+		}else{
+			echo "SESION NO INICIADA";
+		}
+	?>
     <!--
 
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
         Tip 2: you can also add an image using data-image tag
 
     -->
-    	<?php include ('tpl/tpl-sidebar.php'); ?>
-    </div>
-
-    <div class="main-panel">
-        <?php include('tpl/tpl-top.php'); ?>
-
-        <?php include('tpl/tpl-contenido.php'); ?>
-
-        <?php include('tpl/tpl-footer.php'); ?>
-        
-    </div>
+    	
 </div>
 
 
@@ -79,16 +91,18 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-
+    		var session="<?php echo $_SESSION['LOGIN']?>";
         	demo.initChartist();
-
+        	console.log(session);
+        	var msg = session == 0 ? 'POR FAVOR INGRESE SU USUARIO Y PASSWORD':'SESION INICIADA';
+        	var ico = session == 0 ? 'pe-7s-door-lock':'pe-7s-check';
         	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            	icon: ico,
+            	message: msg
 
             },{
                 type: 'info',
-                timer: 4000
+                timer: 2000
             });
 
     	});
