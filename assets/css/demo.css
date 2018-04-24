@@ -66,6 +66,11 @@
     }
 }
 
-.eventTouch{
-    cursor: pointer;
+.ButIngresar{
+    border: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 14px;
+    text-align: left;
+    top: 10px;
 }
