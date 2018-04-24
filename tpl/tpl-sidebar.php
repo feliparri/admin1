@@ -7,25 +7,25 @@
 	    </div>
 
 	    <ul class="nav">
-	        <li style ="cursor:pointer;" /*class="active"*/ onclick="accion('MMPP_1_Listar');">
+	        <li class="eventTouch" /*class="active"*/ onclick="accion('MMPP_1_Listar');">
 	            <a>
 	                <i class="pe-7s-note2"></i>
 	                <p >Ingreso MMPP</p>
 	            </a>
 	        </li>
-	        <li>
+	        <li class="eventTouch">
 	            <a href="#">
 	                <i class="pe-7s-note2"></i>
 	                <p>Procesado MMPP</p>
 	            </a>
 	        </li>
-	        <li>
+	        <li class="eventTouch">
 	            <a href="#">
 	                <i class="pe-7s-note2"></i>
 	                <p>Stock</p>
 	            </a>
 	        </li>
-	        <li onclick="accion('Reportes_1_Listar');">
+	        <li class="eventTouch" onclick="accion('Reportes_1_Listar');">
 	            <a href="#">
 	                <i class="pe-7s-graph"></i>
 	                <p>Reportes</p>

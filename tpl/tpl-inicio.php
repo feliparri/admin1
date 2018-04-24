@@ -52,7 +52,7 @@
     <script src="assets/js/iOS9.js?x=<?php echo rand(1,100);?>"></script>   
 
 </head>
-<body onload="startup()">
+<body >
 <form class="form1" name="f1" id="f1" >
     <div class="wrapper">
         

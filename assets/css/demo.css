@@ -65,3 +65,7 @@
         position: initial;
     }
 }
+
+.eventTouch{
+    cursor: pointer;
+}
