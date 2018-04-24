@@ -1,5 +1,5 @@
 function accion(accion){ //BuscarRequerimiento_21_Listar
-	 alert('accion=>'+accion);
+	 
 	var spltaccion=accion.split('_');
 	var controlador = spltaccion[0];
 	// alert(spltaccion[0]);

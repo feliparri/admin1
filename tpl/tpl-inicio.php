@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Light Bootstrap Dashboard by Creative Tim</title>
+	<title>CONTROL STOCK</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -48,10 +48,12 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
-    <script src="assets/js/eventos.js"></script>
+    <script src="assets/js/eventos.js?x=<?php echo rand(1,100);?>"></script>
+
+   
 
 </head>
-<body>
+<body onload="startup()">
 <form class="form1" name="f1" id="f1" >
     <div class="wrapper">
         
@@ -90,9 +92,33 @@
 
 
 	<script type="text/javascript">
+        function startup() {
+          var el = document.getElementsByTagName("body")[0];
+          el.addEventListener("touchstart", handleStart, false);
+          el.addEventListener("touchend", handleEnd, false);
+          el.addEventListener("touchcancel", handleCancel, false);
+          el.addEventListener("touchleave", handleLeave, false);
+          el.addEventListener("touchmove", handleMove, false);
+        }
+
+        function handleStart(evt) {
+          evt.preventDefault();
+          var el = document.getElementsByTagName("canvas")[0];
+          var ctx = el.getContext("2d");
+          var touches = evt.changedTouches;
+                
+          for (var i=0; i<touches.length; i++) {
+            ongoingTouches.push(touches[i]);
+            var color = colorForTouch(touches[i]);
+            ctx.fillStyle = color;
+            ctx.fillRect(touches[i].pageX-2, touches[i].pageY-2, 4, 4);
+          }
+        }
+
     	$(document).ready(function(){
-    		var session="<?php echo $_SESSION['entroOkLogin']?>";
-        	demo.initChartist();
+    		demo.initChartist();
+            var session="<?php echo $_SESSION['entroOkLogin']?>";
+        	/*demo.initChartist();
         	console.log(session);
         	var msg = session == 0 ? 'POR FAVOR INGRESE SU USUARIO Y PASSWORD':'SESION INICIADA';
         	var ico = session == 0 ? 'pe-7s-door-lock':'pe-7s-check';
@@ -103,7 +129,7 @@
             },{
                 type: 'info',
                 timer: 2000
-            });
+            });*/
 
     	});
 	</script>

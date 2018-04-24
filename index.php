@@ -25,9 +25,10 @@ isset($_POST['funcion'])==true?$funcion=$_POST['funcion']:$funcion='';
  $map = array(
      //SIDEBAR
      'formInicio' => array('class'=>'./class/controller/Inicio.class.php' ,'controller' =>'FormularioInicio', 'action' =>'formMostrar'),
-     
      //MMPP
      'MMPP' => array('class'=>'./class/controller/MMPP.class.php' ,'controller' =>'MMPP', 'action' =>$funcion.'MMPP'),
+     //Reportes
+     'Reportes' => array('class'=>'./class/controller/Reportes.class.php' ,'controller' =>'Reportes', 'action' =>$funcion.'Reportes'),
  );
   
 

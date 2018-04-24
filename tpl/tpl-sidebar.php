@@ -1,13 +1,13 @@
 <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
 	<div class="sidebar-wrapper">
 	    <div class="logo">
-	        <a href="#" class="simple-text">
+	        <a href="#" onclick="accion('formInicio_1_FormularioInicio')" class="simple-text">
 	            Control Stock
 	        </a>
 	    </div>
 
 	    <ul class="nav">
-	        <li style ="cursor:pointer;" class="active" onclick="accion('MMPP_1_Listar');">
+	        <li style ="cursor:pointer;" /*class="active"*/ onclick="accion('MMPP_1_Listar');">
 	            <a>
 	                <i class="pe-7s-note2"></i>
 	                <p >Ingreso MMPP</p>
@@ -25,7 +25,7 @@
 	                <p>Stock</p>
 	            </a>
 	        </li>
-	        <li>
+	        <li onclick="accion('Reportes_1_Listar');">
 	            <a href="#">
 	                <i class="pe-7s-graph"></i>
 	                <p>Reportes</p>
