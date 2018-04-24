@@ -49,8 +49,7 @@
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script src="assets/js/eventos.js?x=<?php echo rand(1,100);?>"></script>
-
-   
+    <script src="assets/js/iOS9.js?x=<?php echo rand(1,100);?>"></script>   
 
 </head>
 <body onload="startup()">
@@ -92,29 +91,7 @@
 
 
 	<script type="text/javascript">
-        function startup() {
-          var el = document.getElementsByTagName("body")[0];
-          el.addEventListener("touchstart", handleStart, false);
-          el.addEventListener("touchend", handleEnd, false);
-          el.addEventListener("touchcancel", handleCancel, false);
-          el.addEventListener("touchleave", handleLeave, false);
-          el.addEventListener("touchmove", handleMove, false);
-        }
-
-        function handleStart(evt) {
-          evt.preventDefault();
-          var el = document.getElementsByTagName("canvas")[0];
-          var ctx = el.getContext("2d");
-          var touches = evt.changedTouches;
-                
-          for (var i=0; i<touches.length; i++) {
-            ongoingTouches.push(touches[i]);
-            var color = colorForTouch(touches[i]);
-            ctx.fillStyle = color;
-            ctx.fillRect(touches[i].pageX-2, touches[i].pageY-2, 4, 4);
-          }
-        }
-
+        
     	$(document).ready(function(){
     		demo.initChartist();
             var session="<?php echo $_SESSION['entroOkLogin']?>";
