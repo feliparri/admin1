@@ -7,11 +7,12 @@
 	    </div>
 
 	    <ul class="nav">
-	        <li class="eventTouch" /*class="active"*/ onclick="accion('MMPP_1_Listar');">
-	            <a>
+	        <li /*class="active"*/ >
+	            <!--<a>
 	                <i class="pe-7s-note2"></i>
 	                <p >Ingreso MMPP</p>
-	            </a>
+	            </a>-->
+	            <button onclick="javascript:accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingreso MMPP</button>
 	        </li>
 	        <li class="eventTouch">
 	            <a href="#">
