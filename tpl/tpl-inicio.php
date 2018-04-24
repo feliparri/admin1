@@ -1,8 +1,4 @@
-<?php
-	session_start(); 
-	session_destroy(); 
-	$_SESSION['LOGIN']='1';
-?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -35,47 +31,11 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-</head>
-<body>
-
-<div class="wrapper">
-    
-	<?php 
-		if($_SESSION['LOGIN']=="1"){
-			?>
-			<?php include ('tpl/tpl-sidebar.php'); ?>
-
-		    <div class="main-panel">
-		        <?php include('tpl/tpl-top.php'); ?>
-
-		        <?php include('tpl/tpl-contenido.php'); ?>
-
-		        <?php include('tpl/tpl-footer.php'); ?>
-		        
-		    </div>
-			<?php
-		}else{
-			echo "SESION NO INICIADA";
-		}
-	?>
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-    	
-</div>
-
-
-</body>
-
-    <!--   Core JS Files   -->
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
@@ -84,14 +44,54 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/eventos.js"></script>
+
+</head>
+<body>
+<form class="form1" name="f1" id="f1" >
+    <div class="wrapper">
+        
+    		<?php include ('tpl/tpl-sidebar.php'); ?>
+
+    	    <div class="main-panel">
+    	        <?php include('tpl/tpl-top.php'); ?>
+
+    	         <?php
+
+                    if(isset($parametro['template'])){
+                        include($parametro['template']);
+                    }else{
+                        include('./tpl/tpl-contenido.php');
+                    }
+                  ?>
+
+    	        <?php include('tpl/tpl-footer.php'); ?>
+    	        
+    	    </div>
+    	
+        <!--
+
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+
+        -->
+        	<input type="hidden" name="accion" id="accion" value="">
+            <input type="hidden" name="funcion" id="funcion" value="">
+    </div>
+</form>
+
+</body>
+
+    <!--   Core JS Files   -->
+
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		var session="<?php echo $_SESSION['LOGIN']?>";
+    		var session="<?php echo $_SESSION['entroOkLogin']?>";
         	demo.initChartist();
         	console.log(session);
         	var msg = session == 0 ? 'POR FAVOR INGRESE SU USUARIO Y PASSWORD':'SESION INICIADA';

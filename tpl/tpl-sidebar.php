@@ -7,10 +7,10 @@
 	    </div>
 
 	    <ul class="nav">
-	        <li class="active">
-	            <a href="#">
+	        <li style ="cursor:pointer;" class="active" onclick="accion('MMPP_1_Listar');">
+	            <a>
 	                <i class="pe-7s-note2"></i>
-	                <p>Ingreso MMPP</p>
+	                <p >Ingreso MMPP</p>
 	            </a>
 	        </li>
 	        <li>

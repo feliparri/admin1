@@ -1,17 +1,15 @@
 <?php
-require_once('../class/datos/UsuarioDatos.class.php');
-session_start();
-session_name('adminDesarrollo');
-	$usuario = htmlentities($_POST['txtUser']); 
-	$passwd = htmlentities($_POST['txtPasswd']);
+//require_once('../class/datos/UsuarioDatos.class.php');
+	session_start();
+	$usuario = htmlentities($_POST['inputEmail']); 
+	$passwd = htmlentities($_POST['inputPassword']);
 	
-	
-	$Usuario = new UsuarioDatos;
-	$rsUsuario = $Usuario->validaLogin($usuario,$passwd);
+	/*$Usuario = new UsuarioDatos;
+	$rsUsuario = $Usuario->validaLogin($usuario,$passwd);*/
 	//var_dump($rsUsuario);exit;
 	
 	
-	if ($rsUsuario!=false) {
+	/*if ($rsUsuario!=false) {
 		$rsCcosto= $Usuario->getCentroCostoUsuario($rsUsuario['usu_rut']);
 		//var_dump($rsCcosto)	;exit;
 		$_SESSION['entroOkLogin']='1';
@@ -27,6 +25,16 @@ session_name('adminDesarrollo');
 		$_SESSION['user_centro_costo']=$rsCcosto['dato'][0]['ccosto'];
 		$_SESSION['user_centro_costo_desc']=$rsUsuario['centro_de_costo_desc'];
 		$_SESSION['ip_bd']='192.168.2.130';
+		header('Location: ../index.php');
+		exit;
+	}else{
+		$_SESSION['msgError']="Usuario no existe";
+		header('Location: ../login.php?error=33');
+		exit;
+	}		*/
+
+	if ($usuario=='demo' and $passwd=='demo') {
+		$_SESSION['entroOkLogin']='1';
 		header('Location: ../index.php');
 		exit;
 	}else{

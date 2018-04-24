@@ -67,7 +67,7 @@
                               </ul>
                         </li>-->
                         <li>
-                            <a href="#">
+                            <a href="./logout.php">
                                 <p>Salir</p>
                             </a>
                         </li>
