@@ -95,7 +95,8 @@
     	$(document).ready(function(){
     		demo.initChartist();
             var session="<?php echo $_SESSION['entroOkLogin']?>";
-        	/*demo.initChartist();
+
+            /*demo.initChartist();
         	console.log(session);
         	var msg = session == 0 ? 'POR FAVOR INGRESE SU USUARIO Y PASSWORD':'SESION INICIADA';
         	var ico = session == 0 ? 'pe-7s-door-lock':'pe-7s-check';
