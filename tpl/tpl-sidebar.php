@@ -12,19 +12,18 @@
 	                
 	                <p >Ingreso MMPP</p>
 	            </a>-->
-	            <a style="cursor:pointer;" data-class="MMPP_1_Listar" class="ButIngresar btn btn-lg btn-primary btn-block btn-signin" >Ingresar</a>
-	            <button onclick="accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-block btn-signin" ><i class="pe-7s-note2"></i>Ingreso MMPP</button>
+	            <a style="cursor:pointer;" data-class="MMPP_1_Listar" class="ButIngresar btn btn-lg btn-primary btn-block btn-signin" ><i class="pe-7s-note2"></i>Ingreso MMPP</a>
 	        </li>
 	        <li class="eventTouch">
-	            <button onclick="javascript:accion('formInicio_1_FormularioInicio');" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-note2"></i>Procesado MMPP</button>
+	            <a data-class="formInicio_1_FormularioInicio" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-note2"></i>Procesado MMPP</a>
 	        </li>
 	        <li class="eventTouch">
-	            <button onclick="javascript:accion('formInicio_1_FormularioInicio');" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-note2"></i>Stock</button>
+	            <a data-class="formInicio_1_FormularioInicio" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-note2"></i>Stock</a>
 	        </li>
 	        <li>            
                 <!--<i class="pe-7s-graph"></i>
                 <p>Reportes</p>-->
-                <button onclick="javascript:accion('Reportes_1_Listar');" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-graph"></i>Reportes</button>
+                <a data-class="Reportes_1_Listar" onclick="javascript:accion('Reportes_1_Listar');" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-graph"></i>Reportes</a>
 	        </li>
 	    </ul>
 	</div>
