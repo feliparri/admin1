@@ -12,6 +12,7 @@
 	                
 	                <p >Ingreso MMPP</p>
 	            </a>-->
+	            <button onclick="javascript:accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-primary btn-block" type="submit">Ingreso MMPP</button>
 	            <button onclick="javascript:accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-block btn-signin" type="submit"><i class="pe-7s-note2"></i>Ingreso MMPP</button>
 	        </li>
 	        <li class="eventTouch">
