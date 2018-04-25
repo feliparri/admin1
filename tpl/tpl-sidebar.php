@@ -12,7 +12,7 @@
 	                
 	                <p >Ingreso MMPP</p>
 	            </a>-->
-	            <a onclick="accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-primary btn-block btn-signin" >Ingresar</a>
+	            <a style="cursor:pointer;" onclick="accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-primary btn-block btn-signin" >Ingresar</a>
 	            <button onclick="accion('MMPP_1_Listar');" class="ButIngresar btn btn-lg btn-block btn-signin" ><i class="pe-7s-note2"></i>Ingreso MMPP</button>
 	        </li>
 	        <li class="eventTouch">
