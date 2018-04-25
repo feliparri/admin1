@@ -205,3 +205,10 @@
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    demo.initChartist();
+                });
+
+            </script>

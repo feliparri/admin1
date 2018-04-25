@@ -93,7 +93,7 @@
 	<script type="text/javascript">
         
     	$(document).ready(function(){
-    		demo.initChartist();
+    		
             var session="<?php echo $_SESSION['entroOkLogin']?>";
 
             /*demo.initChartist();
